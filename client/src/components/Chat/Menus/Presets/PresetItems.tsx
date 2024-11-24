@@ -4,7 +4,7 @@ import { Flipper, Flipped } from 'react-flip-toolkit';
 import { useGetEndpointsQuery } from 'librechat-data-provider/react-query';
 import type { FC } from 'react';
 import type { TPreset } from 'librechat-data-provider';
-import { getPresetTitle, getEndpointField, getIconKey } from '~/utils';
+import { getEndpointField, getIconKey } from '~/utils';
 import FileUpload from '~/components/Chat/Input/Files/FileUpload';
 import { PinIcon, EditIcon, TrashIcon } from '~/components/svg';
 import { Dialog, DialogTrigger, Label } from '~/components/ui';
@@ -51,7 +51,7 @@ const PresetItems: FC<{
               ? `${localize('com_endpoint_preset_default_item')} ${defaultPreset.title}`
               : localize('com_endpoint_preset_default_none')}
           </label>
-          <Dialog>
+          {/* <Dialog>
             <DialogTrigger asChild>
               <label
                 htmlFor="file-upload"
@@ -95,7 +95,7 @@ const PresetItems: FC<{
               }}
             />
             <FileUpload onFileSelected={onFileSelected} />
-          </Dialog>
+          </Dialog> */}
         </div>
       </div>
       {presets && presets.length === 0 && (
@@ -128,7 +128,7 @@ const PresetItems: FC<{
                     <MenuItem
                       key={`preset-item-${preset.presetId}`}
                       textClassName="text-xs max-w-[150px] sm:max-w-[200px] truncate md:max-w-full "
-                      title={getPresetTitle(preset)}
+                      title={preset.title || ''}
                       onClick={() => onSelectPreset(preset)}
                       icon={
                         Icon &&
@@ -142,7 +142,7 @@ const PresetItems: FC<{
                       selected={false}
                       data-testid={`preset-item-${preset}`}
                     >
-                      <div className="flex h-full items-center justify-end gap-1">
+                      {/* <div className="flex h-full items-center justify-end gap-1">
                         <button
                           className={cn(
                             'm-0 h-full rounded-md bg-transparent p-2 text-gray-400 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200',
@@ -178,7 +178,7 @@ const PresetItems: FC<{
                         >
                           <TrashIcon />
                         </button>
-                      </div>
+                      </div> */}
                     </MenuItem>
                   </Flipped>
                   {i !== presets.length - 1 && <MenuSeparator />}
